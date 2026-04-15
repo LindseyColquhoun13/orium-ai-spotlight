@@ -22,12 +22,12 @@
   .level-tab.t1-active { background: #D4EDE4; border-color: #1D9E75; }
   .level-tab.t1-active .tab-level { color: #0A5A42; }
   .level-tab.t1-active .tab-name { color: #1D9E75; }
-  .level-tab.t2-active { background: #DDDAF8; border-color: #534AB7; }
-  .level-tab.t2-active .tab-level { color: #3F36A0; }
-  .level-tab.t2-active .tab-name { color: #534AB7; }
-  .level-tab.t3-active { background: #E8E3FA; border-color: #534AB7; }
-  .level-tab.t3-active .tab-level { color: #3F36A0; }
-  .level-tab.t3-active .tab-name { color: #534AB7; }
+  .level-tab.t2-active { background: #E6F1FB; border-color: #185FA5; }
+  .level-tab.t2-active .tab-level { color: #0C447C; }
+  .level-tab.t2-active .tab-name { color: #185FA5; }
+  .level-tab.t3-active { background: #EDEAE4; border-color: #2A2925; }
+  .level-tab.t3-active .tab-level { color: #2A2925; }
+  .level-tab.t3-active .tab-name { color: #5A5850; }
 
   .card { background: #F5F3EE; border-radius: 20px; padding: 2rem; box-shadow: 0 2px 16px rgba(0,0,0,0.07); }
   .tier { display: none; }
@@ -36,15 +36,15 @@
   .pill { display: inline-flex; align-items: center; gap: 8px; padding: 7px 16px 7px 12px; border-radius: 99px; font-size: 13px; font-weight: 600; margin-bottom: 1.25rem; }
   .pip { width: 8px; height: 8px; border-radius: 50%; }
   .t1-pill { background: #D4EDE4; color: #0A5A42; } .t1-pip { background: #1D9E75; }
-  .t2-pill { background: #DDDAF8; color: #3F36A0; } .t2-pip { background: #534AB7; }
-  .t3-pill { background: #E8E3FA; color: #3F36A0; } .t3-pip { background: #534AB7; }
+  .t2-pill { background: #E6F1FB; color: #0C447C; } .t2-pip { background: #185FA5; }
+  .t3-pill { background: #EDEAE4; color: #2A2925; } .t3-pip { background: #2A2925; }
 
   .tier-meta { font-size: 13px; color: #7A7870; margin-bottom: 10px; }
   .tier-meta span { margin: 0 6px; color: #C0BDB5; }
   .quote { font-size: 16px; font-style: italic; color: #2A2925; line-height: 1.55; padding-left: 16px; margin-bottom: 1.5rem; }
   .t1 .quote { border-left: 3px solid #1D9E75; }
-  .t2 .quote { border-left: 3px solid #534AB7; }
-  .t3 .quote { border-left: 3px solid #534AB7; }
+  .t2 .quote { border-left: 3px solid #185FA5; }
+  .t3 .quote { border-left: 3px solid #2A2925; }
 
   .view-toggle { display: flex; gap: 6px; margin-bottom: 1.5rem; flex-wrap: wrap; }
   .view-btn { font-family: inherit; font-size: 13px; font-weight: 500; padding: 7px 16px; border-radius: 8px; border: 1.5px solid #C8C4B8; background: transparent; color: #7A7870; cursor: pointer; transition: all 0.15s; }
@@ -59,10 +59,12 @@
   .check-item { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: #2A2925; line-height: 1.5; }
   .check-box { width: 20px; height: 20px; border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
   .t1 .check-box { background: #D4EDE4; }
-  .t2 .check-box, .t3 .check-box { background: #DDDAF8; }
+  .t2 .check-box { background: #E6F1FB; }
+  .t3 .check-box { background: #EDEAE4; }
   .check-box svg { width: 10px; height: 7px; }
   .t1 .check-box svg { color: #0A5A42; }
-  .t2 .check-box svg, .t3 .check-box svg { color: #3F36A0; }
+  .t2 .check-box svg { color: #0C447C; }
+  .t3 .check-box svg { color: #2A2925; }
 
   .nom-box { background: #EDEAE4; border-radius: 12px; padding: 1rem 1.25rem; margin-top: 8px; display: flex; flex-direction: column; gap: 8px; }
   .nom-item { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: #2A2925; line-height: 1.5; }
@@ -75,7 +77,8 @@
 
   .badge-bar { margin-top: 1.25rem; border-radius: 10px; padding: 12px 16px; font-size: 13px; }
   .t1 .badge-bar { background: #D8EEE7; color: #0A5A42; }
-  .t2 .badge-bar, .t3 .badge-bar { background: #EAE8F4; color: #3F36A0; }
+  .t2 .badge-bar { background: #E6F1FB; color: #0C447C; }
+  .t3 .badge-bar { background: #EDEAE4; color: #2A2925; }
   .badge-bar strong { font-weight: 700; }
 
   .path-toggle { display: flex; gap: 8px; margin-bottom: 12px; }
@@ -88,8 +91,8 @@
   .example-card { background: #EDEAE4; border-radius: 12px; padding: 1rem 1.25rem; margin-bottom: 10px; }
   .example-role { font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 6px; }
   .t1 .example-role { color: #1D9E75; }
-  .t2 .example-role { color: #534AB7; }
-  .t3 .example-role { color: #534AB7; }
+  .t2 .example-role { color: #185FA5; }
+  .t3 .example-role { color: #2A2925; }
   .example-text { font-size: 13px; color: #2A2925; line-height: 1.6; }
   .example-impact { font-size: 12px; color: #7A7870; margin-top: 5px; font-style: italic; }
 
@@ -100,8 +103,8 @@
   .ach-card.locked { background: #EEECE6; border: 1.5px dashed #C8C4B8; }
   .ach-icon { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
   .t1-icon { background: #D4EDE4; }
-  .t2-icon { background: #DDDAF8; }
-  .t3-icon { background: #E8E3FA; }
+  .t2-icon { background: #E6F1FB; }
+  .t3-icon { background: #EDEAE4; }
   .locked-icon { background: #E4E1DC; }
   .ach-body { flex: 1; min-width: 0; }
   .ach-top { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 3px; }
@@ -131,15 +134,15 @@
 
   <div class="level-tabs">
     <button class="level-tab t1-active" id="ltab-0" onclick="goTo(0)">
-      <span class="tab-level">L1</span>
+      <span class="tab-level">🟢 L1</span>
       <span class="tab-name">AI Practitioner</span>
     </button>
     <button class="level-tab" id="ltab-1" onclick="goTo(1)">
-      <span class="tab-level">L2</span>
+      <span class="tab-level">🟦 L2</span>
       <span class="tab-name">AI Innovator</span>
     </button>
     <button class="level-tab" id="ltab-2" onclick="goTo(2)">
-      <span class="tab-level">L3</span>
+      <span class="tab-level">◆ L3</span>
       <span class="tab-name">AI Pioneer</span>
     </button>
   </div>
