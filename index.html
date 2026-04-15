@@ -10,9 +10,9 @@
   body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #EFECE6; min-height: 100vh; padding: 2rem 1rem 4rem; color: #2A2925; }
   .page { max-width: 740px; margin: 0 auto; }
 
-  .program-header { text-align: center; margin-bottom: 2.5rem; }
+  .program-header { text-align: center; margin-bottom: 1.5rem; }
   .program-header h1 { font-size: 1.9rem; font-weight: 700; color: #2A2925; margin-bottom: 6px; letter-spacing: -0.02em; }
-  .program-header p { font-size: 14px; color: #7A7870; }
+  .program-header p { font-size: 12px; color: #9A9790; }
 
   .level-tabs { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 1.5rem; }
   .level-tab { font-family: inherit; background: #F0EDE7; border: 1.5px solid #D8D5CF; border-radius: 14px; padding: 14px 12px; cursor: pointer; text-align: center; transition: all 0.15s; }
@@ -129,7 +129,8 @@
   <h2 class="sr-only">Orium AI Spotlight Program</h2>
   <div class="program-header">
     <h1>Orium AI Spotlight Program</h1>
-    <p>Celebrating Orians who are shaping what human + AI collaboration looks like.</p>
+    <p style="font-size:13px;color:#7A7870;font-style:italic;margin-top:6px;">Celebrating Orians who are shaping what human + AI collaboration looks like.</p>
+    <p style="font-size:13px;color:#7A7870;line-height:1.8;margin-top:0.75rem;margin-bottom:0;">Most of this starts small. A better workflow. A faster way to get something done. Something you share that helps someone else. The goal here isn't perfection. It's progress. These levels are just a way to make that progress visible.</p>
   </div>
 
   <div class="level-tabs">
@@ -152,7 +153,7 @@
     <!-- L1 -->
     <div class="tier visible" id="tier-0">
       <div class="pill t1-pill"><span class="pip t1-pip"></span>AI Practitioner</div>
-      <div class="quote">"I used AI to meaningfully improve a real workflow, and I can clearly show the before and after."</div>
+      <div class="quote">"You've used AI to meaningfully improve a real workflow, and you can show the before and after."</div>
       <div class="view-toggle">
         <button class="view-btn active" onclick="switchView(0,'level',this)">Level details</button>
         <button class="view-btn" onclick="switchView(0,'examples',this)">Examples</button>
@@ -160,18 +161,21 @@
       </div>
 
       <div class="view visible" id="v0-level">
+        <p style="font-size:14px;color:#5A5850;line-height:1.7;margin-bottom:1rem;">This is where most people start. It's about making AI genuinely useful in your day-to-day work.</p>
+        <p style="font-size:14px;color:#5A5850;line-height:1.7;margin-bottom:1rem;">This doesn't need to be massive. We care about real, practical improvements that make your work better.</p>
+        <p style="font-size:14px;color:#2A2925;font-weight:500;line-height:1.7;margin-bottom:1.25rem;">If you've been experimenting with AI at all, there's a good chance you're closer to one of these than you think.</p>
         <div class="sec-label">What to submit</div>
         <div class="check-list">
           <div class="check-item"><div class="check-box"><svg viewBox="0 0 10 7" fill="none"><path d="M1 3.5L3.8 6 9 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>Short write-up or video (3–5 min async)</span></div>
           <div class="check-item"><div class="check-box"><svg viewBox="0 0 10 7" fill="none"><path d="M1 3.5L3.8 6 9 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>The problem you faced</span></div>
           <div class="check-item"><div class="check-box"><svg viewBox="0 0 10 7" fill="none"><path d="M1 3.5L3.8 6 9 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>Your AI approach</span></div>
           <div class="check-item"><div class="check-box"><svg viewBox="0 0 10 7" fill="none"><path d="M1 3.5L3.8 6 9 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>Measurable impact (time saved, quality, speed, clarity)</span></div>
-          <div class="check-item"><div class="check-box"><svg viewBox="0 0 10 7" fill="none"><path d="M1 3.5L3.8 6 9 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>Why it matters (clear, non-trivial applied outcome)</span></div>
+          <div class="check-item"><div class="check-box"><svg viewBox="0 0 10 7" fill="none"><path d="M1 3.5L3.8 6 9 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>You can clearly show the impact (time saved, quality improved, speed, clarity, etc.)</span></div>
         </div>
         <div class="sec-label">How to nominate</div>
         <div class="nom-box">
           <div class="nom-item"><span class="diamond">◆</span><span>Self-submission or nomination by peer, manager, or LT member</span></div>
-          <div class="nom-item"><span class="diamond">◆</span><span>Reviewed monthly by Functional LT member</span></div>
+          <div class="nom-item"><span class="diamond">◆</span><span>We review submissions monthly and get back to everyone</span></div>
         </div>
         <div class="sec-label">Recognition</div>
         <div class="recog-grid" style="grid-template-columns:1fr 1fr 1fr">
@@ -237,7 +241,7 @@
     <!-- L2 -->
     <div class="tier" id="tier-1">
       <div class="pill t2-pill"><span class="pip t2-pip"></span>AI Innovator</div>
-      <div class="quote">"I built something reusable that helps other Orians work smarter or faster."</div>
+      <div class="quote">"You've built something reusable that helps other Orians work smarter or faster."</div>
       <div class="view-toggle">
         <button class="view-btn active" onclick="switchView(1,'level',this)">Level details</button>
         <button class="view-btn" onclick="switchView(1,'examples',this)">Examples</button>
@@ -245,6 +249,8 @@
       </div>
 
       <div class="view visible" id="v1-level">
+        <p style="font-size:14px;color:#5A5850;line-height:1.7;margin-bottom:1rem;">This is where your work starts helping others, not just yourself.</p>
+        <p style="font-size:14px;color:#5A5850;line-height:1.7;margin-bottom:1.25rem;">This is where things start to scale.</p>
         <div class="sec-label">What to create</div>
         <div class="check-list t2">
           <div class="check-item"><div class="check-box"><svg viewBox="0 0 10 7" fill="none"><path d="M1 3.5L3.8 6 9 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>A reusable asset: prompt library, workflow, automation, or mini-guide</span></div>
@@ -254,8 +260,8 @@
         <div class="sec-label">How to nominate</div>
         <div class="nom-box">
           <div class="nom-item"><span class="diamond">◆</span><span>Self-submission or nomination by peer, manager, or LT member</span></div>
-          <div class="nom-item"><span class="diamond">◆</span><span>Must include evidence of reusable value and measurable adoption</span></div>
-          <div class="nom-item"><span class="diamond">◆</span><span>Validated by Functional LT member</span></div>
+          <div class="nom-item"><span class="diamond">◆</span><span>You'll want to show that others are actually using it, or that it's driving real impact beyond just you</span></div>
+          <div class="nom-item"><span class="diamond">◆</span><span>Reviewed by your Functional LT member</span></div>
           <div class="nom-item"><span class="diamond">◆</span><span>First 5 sent to Jason + manager assessment, shared org-wide at launch</span></div>
         </div>
         <div class="sec-label">Recognition</div>
@@ -325,7 +331,7 @@
     <!-- L3 -->
     <div class="tier" id="tier-2">
       <div class="pill t3-pill"><span class="pip t3-pip"></span>AI Pioneer</div>
-      <div class="quote">"I delivered work that materially changed how Orium or our clients operate."</div>
+      <div class="quote">"You've delivered work that materially changed how Orium or a client operates."</div>
       <div class="view-toggle">
         <button class="view-btn active" onclick="switchView(2,'level',this)">Level details</button>
         <button class="view-btn" onclick="switchView(2,'examples',this)">Examples</button>
@@ -333,6 +339,8 @@
       </div>
 
       <div class="view visible" id="v2-level">
+        <p style="font-size:14px;color:#5A5850;line-height:1.7;margin-bottom:1rem;">This is where things start to shift how teams or clients actually operate.</p>
+        <p style="font-size:14px;color:#5A5850;line-height:1.7;margin-bottom:1.25rem;">Not everything fits here, and that's okay. This is intentionally a high bar.</p>
         <div class="sec-label">Choose your path</div>
         <div class="path-toggle">
           <button class="path-btn active" onclick="switchPath('a',this)">Path A: Breakthrough</button>
@@ -351,8 +359,8 @@
         <div class="sec-label">How to nominate</div>
         <div class="nom-box">
           <div class="nom-item"><span class="diamond">◆</span><span>Nomination only (peer, manager, or LT)</span></div>
-          <div class="nom-item"><span class="diamond">◆</span><span>Documented breakthrough or sustained transformational impact required</span></div>
-          <div class="nom-item"><span class="diamond">◆</span><span>Reviewed and approved by Functional LT member + Jason (who sets bonus amount)</span></div>
+          <div class="nom-item"><span class="diamond">◆</span><span>This is for work that creates clear, meaningful change, either through a breakthrough or sustained impact over time</span></div>
+          <div class="nom-item"><span class="diamond">◆</span><span>We're looking for documented impact, reviewed by Functional LT + Jason who sets the monetary reward</span></div>
         </div>
         <div class="sec-label">Recognition</div>
         <div class="recog-grid" style="grid-template-columns:1fr 1fr 1fr 1fr">
