@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Orium AI Spotlight Program</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; background: #EFECE6; min-height: 100vh; padding: 2rem 1rem 4rem; color: #2A2925; }
+  .page { max-width: 740px; margin: 0 auto; }
+
+  .program-header { text-align: center; margin-bottom: 2.5rem; }
+  .program-header h1 { font-size: 1.9rem; font-weight: 700; color: #2A2925; margin-bottom: 6px; letter-spacing: -0.02em; }
+  .program-header p { font-size: 14px; color: #7A7870; }
+
+  .level-tabs { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; margin-bottom: 1.5rem; }
+  .level-tab { font-family: inherit; background: #F0EDE7; border: 1.5px solid #D8D5CF; border-radius: 14px; padding: 14px 12px; cursor: pointer; text-align: center; transition: all 0.15s; }
+  .level-tab:hover { background: #EAE7E1; }
+  .level-tab .tab-level { font-size: 17px; font-weight: 700; color: #7A7870; display: block; margin-bottom: 3px; }
+  .level-tab .tab-name { font-size: 12px; color: #9A9790; display: block; }
+  .level-tab.t1-active { background: #D4EDE4; border-color: #1D9E75; }
+  .level-tab.t1-active .tab-level { color: #0A5A42; }
+  .level-tab.t1-active .tab-name { color: #1D9E75; }
+  .level-tab.t2-active { background: #DDDAF8; border-color: #534AB7; }
+  .level-tab.t2-active .tab-level { color: #3F36A0; }
+  .level-tab.t2-active .tab-name { color: #534AB7; }
+  .level-tab.t3-active { background: #E8E3FA; border-color: #534AB7; }
+  .level-tab.t3-active .tab-level { color: #3F36A0; }
+  .level-tab.t3-active .tab-name { color: #534AB7; }
+
+  .card { background: #F5F3EE; border-radius: 20px; padding: 2rem; box-shadow: 0 2px 16px rgba(0,0,0,0.07); }
+  .tier { display: none; }
+  .tier.visible { display: block; }
+
+  .pill { display: inline-flex; align-items: center; gap: 8px; padding: 7px 16px 7px 12px; border-radius: 99px; font-size: 13px; font-weight: 600; margin-bottom: 1.25rem; }
+  .pip { width: 8px; height: 8px; border-radius: 50%; }
+  .t1-pill { background: #D4EDE4; color: #0A5A42; } .t1-pip { background: #1D9E75; }
+  .t2-pill { background: #DDDAF8; color: #3F36A0; } .t2-pip { background: #534AB7; }
+  .t3-pill { background: #E8E3FA; color: #3F36A0; } .t3-pip { background: #534AB7; }
+
+  .tier-meta { font-size: 13px; color: #7A7870; margin-bottom: 10px; }
+  .tier-meta span { margin: 0 6px; color: #C0BDB5; }
+  .quote { font-size: 16px; font-style: italic; color: #2A2925; line-height: 1.55; padding-left: 16px; margin-bottom: 1.5rem; }
+  .t1 .quote { border-left: 3px solid #1D9E75; }
+  .t2 .quote { border-left: 3px solid #534AB7; }
+  .t3 .quote { border-left: 3px solid #534AB7; }
+
+  .view-toggle { display: flex; gap: 6px; margin-bottom: 1.5rem; flex-wrap: wrap; }
+  .view-btn { font-family: inherit; font-size: 13px; font-weight: 500; padding: 7px 16px; border-radius: 8px; border: 1.5px solid #C8C4B8; background: transparent; color: #7A7870; cursor: pointer; transition: all 0.15s; }
+  .view-btn.active { background: #2A2925; color: #F5F3EE; border-color: #2A2925; }
+  .view { display: none; }
+  .view.visible { display: block; }
+
+  .sec-label { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #9A9790; margin-bottom: 10px; margin-top: 1.25rem; }
+  .sec-label:first-child { margin-top: 0; }
+
+  .check-list { display: flex; flex-direction: column; gap: 8px; }
+  .check-item { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: #2A2925; line-height: 1.5; }
+  .check-box { width: 20px; height: 20px; border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+  .t1 .check-box { background: #D4EDE4; }
+  .t2 .check-box, .t3 .check-box { background: #DDDAF8; }
+  .check-box svg { width: 10px; height: 7px; }
+  .t1 .check-box svg { color: #0A5A42; }
+  .t2 .check-box svg, .t3 .check-box svg { color: #3F36A0; }
+
+  .nom-box { background: #EDEAE4; border-radius: 12px; padding: 1rem 1.25rem; margin-top: 8px; display: flex; flex-direction: column; gap: 8px; }
+  .nom-item { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: #2A2925; line-height: 1.5; }
+  .diamond { font-size: 9px; color: #9A9790; margin-top: 4px; flex-shrink: 0; }
+
+  .recog-grid { display: grid; gap: 10px; margin-top: 8px; }
+  .recog-cell { background: #EDEAE4; border-radius: 10px; padding: 12px 14px; }
+  .recog-cell-label { font-size: 11px; color: #9A9790; margin-bottom: 4px; }
+  .recog-cell-val { font-size: 13px; font-weight: 600; color: #2A2925; line-height: 1.4; }
+
+  .badge-bar { margin-top: 1.25rem; border-radius: 10px; padding: 12px 16px; font-size: 13px; }
+  .t1 .badge-bar { background: #D8EEE7; color: #0A5A42; }
+  .t2 .badge-bar, .t3 .badge-bar { background: #EAE8F4; color: #3F36A0; }
+  .badge-bar strong { font-weight: 700; }
+
+  .path-toggle { display: flex; gap: 8px; margin-bottom: 12px; }
+  .path-btn { font-family: inherit; font-size: 13px; font-weight: 500; padding: 8px 16px; border-radius: 8px; border: 1.5px solid #C8C4B8; background: transparent; color: #7A7870; cursor: pointer; transition: all 0.15s; }
+  .path-btn.active { background: #2A2925; color: #F5F3EE; border-color: #2A2925; }
+  .path-content { display: none; flex-direction: column; gap: 8px; }
+  .path-content.visible { display: flex; }
+
+  /* EXAMPLES */
+  .example-card { background: #EDEAE4; border-radius: 12px; padding: 1rem 1.25rem; margin-bottom: 10px; }
+  .example-role { font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 6px; }
+  .t1 .example-role { color: #1D9E75; }
+  .t2 .example-role { color: #534AB7; }
+  .t3 .example-role { color: #534AB7; }
+  .example-text { font-size: 13px; color: #2A2925; line-height: 1.6; }
+  .example-impact { font-size: 12px; color: #7A7870; margin-top: 5px; font-style: italic; }
+
+  /* BONUS WINS */
+  .bonus-intro { background: #EDEAE4; border-radius: 10px; padding: 10px 14px; margin-bottom: 14px; font-size: 13px; color: #5A5850; line-height: 1.6; }
+  .bonus-intro strong { color: #2A2925; font-weight: 600; }
+  .ach-card { background: #EDEAE4; border-radius: 12px; padding: 1rem 1.25rem; display: flex; gap: 14px; align-items: flex-start; margin-bottom: 10px; }
+  .ach-card.locked { background: #EEECE6; border: 1.5px dashed #C8C4B8; }
+  .ach-icon { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0; }
+  .t1-icon { background: #D4EDE4; }
+  .t2-icon { background: #DDDAF8; }
+  .t3-icon { background: #E8E3FA; }
+  .locked-icon { background: #E4E1DC; }
+  .ach-body { flex: 1; min-width: 0; }
+  .ach-top { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 3px; }
+  .ach-name { font-size: 14px; font-weight: 700; color: #2A2925; }
+  .ach-card.locked .ach-name { color: #9A9790; }
+  .rarity { font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 99px; letter-spacing: 0.05em; text-transform: uppercase; }
+  .rarity-common { background: #EDEAE4; color: #7A7870; }
+  .rarity-rare { background: #DDDAF8; color: #3F36A0; }
+  .rarity-legendary { background: #FAEEDA; color: #854F0B; }
+  .ach-desc { font-size: 12px; color: #5A5850; line-height: 1.55; }
+  .ach-card.locked .ach-desc { color: #9A9790; font-style: italic; }
+  .ach-unlock { font-size: 11px; color: #9A9790; margin-top: 4px; }
+  .ach-swag { font-size: 12px; font-weight: 600; color: #2A2925; margin-top: 6px; padding-top: 6px; border-top: 1px solid #D8D5CF; }
+  .ach-card.locked .ach-swag { color: #9A9790; }
+  .secret-hint { font-size: 11px; color: #9A9790; font-style: italic; margin-top: 3px; }
+  .secret-divider { font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #9A9790; padding-bottom: 8px; border-bottom: 1px solid #D8D5CF; margin: 16px 0 10px; }
+  .secret-teaser { background: #FAEEDA; border-radius: 10px; padding: 10px 14px; margin-bottom: 10px; font-size: 13px; color: #854F0B; line-height: 1.6; }
+</style>
+</head>
+<body>
+<div class="page">
+  <h2 class="sr-only">Orium AI Spotlight Program</h2>
+  <div class="program-header">
+    <h1>Orium AI Spotlight Program</h1>
+    <p>Celebrating Orians who are shaping what human + AI collaboration looks like.</p>
+  </div>
+
+  <div class="level-tabs">
+    <button class="level-tab t1-active" id="ltab-0" onclick="goTo(0)">
+      <span class="tab-level">L1</span>
+      <span class="tab-name">AI Practitioner</span>
+    </button>
+    <button class="level-tab" id="ltab-1" onclick="goTo(1)">
+      <span class="tab-level">L2</span>
+      <span class="tab-name">AI Innovator</span>
+    </button>
+    <button class="level-tab" id="ltab-2" onclick="goTo(2)">
+      <span class="tab-level">L3</span>
+      <span class="tab-name">AI Pioneer</span>
+    </button>
+  </div>
+
+  <div class="card t1" id="main-card">
+
+    <!-- L1 -->
+    <div class="tier visible" id="tier-0">
+      <div class="pill t1-pill"><span class="pip t1-pip"></span>AI Practitioner</div>
+      <div class="tier-meta">Theme: Making it real <span>·</span> Focus: Measurable improvement in your own work</div>
+      <div class="quote">"I used AI to meaningfully improve a real workflow, and I can clearly show the before and after."</div>
+      <div class="view-toggle">
+        <button class="view-btn active" onclick="switchView(0,'level',this)">Level details</button>
+        <button class="view-btn" onclick="switchView(0,'examples',this)">Examples</button>
+        <button class="view-btn" onclick="switchView(0,'bonus',this)">Bonus wins</button>
+      </div>
+
+      <div class="view visible" id="v0-level">
+        <div class="sec-label">What to submit</div>
+        <div class="check-list">
+          <div class="check-item"><div class="check-box"><svg viewBox="0 0 10 7" fill="none"><path d="M1 3.5L3.8 6 9 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>Short write-up or video (3–5 min async)</span></div>
+          <div class="check-item"><div class="check-box"><svg viewBox="0 0 10 7" fill="none"><path d="M1 3.5L3.8 6 9 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>The problem you faced</span></div>
+          <div class="check-item"><div class="check-box"><svg viewBox="0 0 10 7" fill="none"><path d="M1 3.5L3.8 6 9 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>Your AI approach</span></div>
+          <div class="check-item"><div class="check-box"><svg viewBox="0 0 10 7" fill="none"><path d="M1 3.5L3.8 6 9 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>Measurable impact (time saved, quality, speed, clarity)</span></div>
+          <div class="check-item"><div class="check-box"><svg viewBox="0 0 10 7" fill="none"><path d="M1 3.5L3.8 6 9 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>Why it matters — clear, non-trivial applied outcome</span></div>
+        </div>
+        <div class="sec-label">How to nominate</div>
+        <div class="nom-box">
+          <div class="nom-item"><span class="diamond">◆</span><span>Self-submission or manager nomination</span></div>
+          <div class="nom-item"><span class="diamond">◆</span><span>Reviewed monthly by Functional LT member</span></div>
+        </div>
+        <div class="sec-label">Recognition</div>
+        <div class="recog-grid" style="grid-template-columns:1fr 1fr 1fr">
+          <div class="recog-cell"><div class="recog-cell-label">Announcement</div><div class="recog-cell-val">Team-wide Slack shoutout + Jason callout in monthly meeting</div></div>
+          <div class="recog-cell"><div class="recog-cell-label">Swag</div><div class="recog-cell-val">T-shirt</div></div>
+          <div class="recog-cell"><div class="recog-cell-label">Credential</div><div class="recog-cell-val">Internal milestone only</div></div>
+        </div>
+        <div class="badge-bar"><strong>Badge:</strong> Orium AI Practitioner — Making AI Work for You</div>
+      </div>
+
+      <div class="view" id="v0-examples">
+        <div class="sec-label">What L1 looks like across Orium</div>
+        <div class="example-card">
+          <div class="example-role">Technology</div>
+          <div class="example-text">Used GitHub Copilot to refactor a legacy module and generate unit tests, cutting the task from 2 days to half a day. Tracked time saved and shared the before/after in the team retro.</div>
+          <div class="example-impact">Impact: ~1.5 days saved, code coverage improved by 30%</div>
+        </div>
+        <div class="example-card">
+          <div class="example-role">Product Management</div>
+          <div class="example-text">Built a multi-step AI workflow that converts meeting notes into action items and drafts Jira tickets automatically — a task that previously took 45 minutes per meeting.</div>
+          <div class="example-impact">Impact: ~45 min saved per meeting, more consistent ticket quality</div>
+        </div>
+        <div class="example-card">
+          <div class="example-role">Design</div>
+          <div class="example-text">Used Genie to summarize 12 UX research interviews in under 10 minutes, surfacing themes that shaped the discovery scope. Previously this synthesis took a full day.</div>
+          <div class="example-impact">Impact: ~6 hours saved, faster and more consistent synthesis</div>
+        </div>
+        <div class="example-card">
+          <div class="example-role">Culture / HR</div>
+          <div class="example-text">Used AI to draft role-specific interview guides and onboarding templates, reducing prep time and creating more consistent candidate experiences across hiring managers.</div>
+          <div class="example-impact">Impact: Prep time cut by ~60%, more equitable interview process</div>
+        </div>
+        <div class="example-card">
+          <div class="example-role">Delivery Management</div>
+          <div class="example-text">Used ChatGPT to auto-generate weekly stakeholder update emails from standups and ticket activity, eliminating a manual 30-minute writing task each Friday.</div>
+          <div class="example-impact">Impact: 2 hours/month saved, more timely and consistent client comms</div>
+        </div>
+        <div class="example-card">
+          <div class="example-role">New Business</div>
+          <div class="example-text">Used RFP GPT to generate a first-pass proposal response from a 40-page brief in under 20 minutes, freeing the team to focus on differentiation and strategy rather than structure.</div>
+          <div class="example-impact">Impact: Proposal prep time cut by ~50%</div>
+        </div>
+        <div class="example-card">
+          <div class="example-role">Operations</div>
+          <div class="example-text">Built a Zapier automation that routes Slack standup updates into a weekly risk summary, replacing a manual aggregation task that took 45 minutes every Monday.</div>
+          <div class="example-impact">Impact: 3 hours/month saved, risks surfaced faster</div>
+        </div>
+      </div>
+
+      <div class="view" id="v0-bonus">
+        <div class="bonus-intro"><strong>Bonus wins are extras — not requirements.</strong> You earn L1 recognition just by meeting the level criteria. These are additional unlocks that reward specific standout behaviors on top of that.</div>
+        <div class="ach-card"><div class="ach-icon t1-icon">🚀</div><div class="ach-body"><div class="ach-top"><span class="ach-name">First signal</span><span class="rarity rarity-common">Common</span></div><div class="ach-desc">You submitted your first L1 and put something real in front of people. That's the hardest step.</div><div class="ach-unlock">Unlocked by: completing your first L1 submission</div><div class="ach-swag">🎽 Sticker pack</div></div></div>
+        <div class="ach-card"><div class="ach-icon t1-icon">📅</div><div class="ach-body"><div class="ach-top"><span class="ach-name">Early adopter</span><span class="rarity rarity-rare">Rare</span></div><div class="ach-desc">One of the first 15 Orians to submit anything in the program. You helped define what this looks like before anyone else did.</div><div class="ach-unlock">Unlocked by: submitting within the first month of launch</div><div class="ach-swag">🧢 Elite hat or toque + permanent early adopter status</div></div></div>
+        <div class="ach-card"><div class="ach-icon t1-icon">⚡</div><div class="ach-body"><div class="ach-top"><span class="ach-name">Speed run</span><span class="rarity rarity-rare">Rare</span></div><div class="ach-desc">Highest quantified time savings in a single L1 submission during a review cycle. Fast and provable.</div><div class="ach-unlock">Unlocked by: highest time-savings metric in a monthly cycle</div><div class="ach-swag">🧢 Elite hat or toque</div></div></div>
+        <div class="ach-card"><div class="ach-icon t1-icon">🪟</div><div class="ach-body"><div class="ach-top"><span class="ach-name">Before &amp; after</span><span class="rarity rarity-rare">Rare</span></div><div class="ach-desc">Your L1 told the clearest before/after story of the cycle — reviewers immediately understood the impact.</div><div class="ach-unlock">Unlocked by: LT discretion — most compelling impact story in a cycle</div><div class="ach-swag">🎽 T-shirt</div></div></div>
+        <div class="ach-card"><div class="ach-icon t1-icon">💪</div><div class="ach-body"><div class="ach-top"><span class="ach-name">The comeback</span><span class="rarity rarity-rare">Rare</span></div><div class="ach-desc">Your first submission didn't meet the bar. You took the feedback, iterated, and came back stronger.</div><div class="ach-unlock">Unlocked by: submitting again after a rejection and getting recognized</div><div class="ach-swag">🎽 T-shirt</div></div></div>
+        <div class="secret-divider">Secret achievements</div>
+        <div class="secret-teaser">These are real — we're just not telling you how to unlock them. You'll know when you've earned one.</div>
+        <div class="ach-card locked"><div class="ach-icon locked-icon">🔒</div><div class="ach-body"><div class="ach-top"><span class="ach-name">??? Secret achievement</span><span class="rarity rarity-legendary">Legendary</span></div><div class="ach-desc">Some experiments don't follow the script.</div><div class="secret-hint">Hint: You went further than what was asked of you.</div><div class="ach-swag">🎁 One-of-a-kind swag — details unknown</div></div></div>
+      </div>
+    </div>
+
+    <!-- L2 -->
+    <div class="tier" id="tier-1">
+      <div class="pill t2-pill"><span class="pip t2-pip"></span>AI Innovator</div>
+      <div class="tier-meta">Theme: Scaling your impact <span>·</span> Focus: Reusable value that enables others</div>
+      <div class="quote">"I built something reusable that helps other Orians work smarter or faster."</div>
+      <div class="view-toggle">
+        <button class="view-btn active" onclick="switchView(1,'level',this)">Level details</button>
+        <button class="view-btn" onclick="switchView(1,'examples',this)">Examples</button>
+        <button class="view-btn" onclick="switchView(1,'bonus',this)">Bonus wins</button>
+      </div>
+
+      <div class="view visible" id="v1-level">
+        <div class="sec-label">What to create</div>
+        <div class="check-list t2">
+          <div class="check-item"><div class="check-box"><svg viewBox="0 0 10 7" fill="none"><path d="M1 3.5L3.8 6 9 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>A reusable asset: prompt library, workflow, automation, or mini-guide</span></div>
+          <div class="check-item"><div class="check-box"><svg viewBox="0 0 10 7" fill="none"><path d="M1 3.5L3.8 6 9 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>Demonstrated measurable adoption or impact beyond yourself</span></div>
+          <div class="check-item"><div class="check-box"><svg viewBox="0 0 10 7" fill="none"><path d="M1 3.5L3.8 6 9 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>Share publicly — short demo, async guide, or #ai-in-action post</span></div>
+        </div>
+        <div class="sec-label">How to nominate</div>
+        <div class="nom-box">
+          <div class="nom-item"><span class="diamond">◆</span><span>Self-submission or nomination by peer, manager, or LT member</span></div>
+          <div class="nom-item"><span class="diamond">◆</span><span>Must include evidence of reusable value and measurable adoption</span></div>
+          <div class="nom-item"><span class="diamond">◆</span><span>Validated by Functional LT member</span></div>
+          <div class="nom-item"><span class="diamond">◆</span><span>First 5 sent to Jason + manager assessment, shared org-wide at launch</span></div>
+        </div>
+        <div class="sec-label">Recognition</div>
+        <div class="recog-grid" style="grid-template-columns:1fr 1fr 1fr 1fr">
+          <div class="recog-cell"><div class="recog-cell-label">Spotlight</div><div class="recog-cell-val">Monthly or SOTU feature + LinkedIn AI Spotlight</div></div>
+          <div class="recog-cell"><div class="recog-cell-label">Bonus</div><div class="recog-cell-val">$150–$250*</div></div>
+          <div class="recog-cell"><div class="recog-cell-label">Swag</div><div class="recog-cell-val">Hat or toque</div></div>
+          <div class="recog-cell"><div class="recog-cell-label">Credential</div><div class="recog-cell-val">LinkedIn digital badge</div></div>
+        </div>
+        <div class="badge-bar"><strong>Badge:</strong> Orium AI Innovator — Teaching Others &amp; Sharing What Works</div>
+      <div style="font-size:12px;color:#9A9790;margin-top:10px;line-height:1.6;">* Depending on documented impact, LT may approve a higher amount.</div>
+      </div>
+
+      <div class="view" id="v1-examples">
+        <div class="sec-label">What L2 looks like across Orium</div>
+        <div class="example-card">
+          <div class="example-role">Technology</div>
+          <div class="example-text">Built a reusable AI workflow across the engineering toolchain — prompt templates for debugging, code review, and test generation — adopted by 8 engineers within two sprints.</div>
+          <div class="example-impact">Impact: Shared in #ai-in-action, now part of onboarding for new tech Orians</div>
+        </div>
+        <div class="example-card">
+          <div class="example-role">Product Management</div>
+          <div class="example-text">Created a prompt library for PMs covering discovery questions, RAID log generation, and decision summaries. Shared via a Loom demo and adopted by PMs across three active projects.</div>
+          <div class="example-impact">Impact: 6 PMs using it regularly, saved est. 2–3 hrs/week per person</div>
+        </div>
+        <div class="example-card">
+          <div class="example-role">Design</div>
+          <div class="example-text">Developed a shared workflow using Genie, Cursor, and Storybook for collaborative design+dev QA. Published a mini-guide and demoed it to the design team — now adopted across two client projects.</div>
+          <div class="example-impact">Impact: QA cycle time reduced by ~40% on adopting projects</div>
+        </div>
+        <div class="example-card">
+          <div class="example-role">Culture / HR</div>
+          <div class="example-text">Built an AI-powered onboarding toolkit — prompt packs, microlearning templates, and role-based guides — shared with the whole people team and used in three onboarding cohorts.</div>
+          <div class="example-impact">Impact: Onboarding prep time cut by ~50%, more consistent new hire experience</div>
+        </div>
+        <div class="example-card">
+          <div class="example-role">New Business</div>
+          <div class="example-text">Created a reusable RFP response workflow using AI — templates, prompt sequences, and a review checklist — that cut proposal turnaround from 5 days to 2. Shared with the full BD team.</div>
+          <div class="example-impact">Impact: Adopted by 4 BDs, now standard practice for first-pass proposals</div>
+        </div>
+        <div class="example-card">
+          <div class="example-role">Brand</div>
+          <div class="example-text">Developed a brand prompt library with tone/style guidelines, content templates, and campaign copy frameworks. Shared with Marketing and Design teams, who now use it for all external assets.</div>
+          <div class="example-impact">Impact: Faster brand-consistent output across 3 teams</div>
+        </div>
+        <div class="example-card">
+          <div class="example-role">Operations</div>
+          <div class="example-text">Documented and shared a Zapier blueprint for automating staffing readiness reports — pulling data, formatting summaries, and routing to team leads. Adopted by ops team org-wide.</div>
+          <div class="example-impact">Impact: 4 hours/week saved across the ops team</div>
+        </div>
+      </div>
+
+      <div class="view" id="v1-bonus">
+        <div class="bonus-intro"><strong>Bonus wins are extras — not requirements.</strong> You earn L2 recognition just by meeting the level criteria. These are additional unlocks that reward specific standout behaviors on top of that.</div>
+        <div class="ach-card"><div class="ach-icon t2-icon">🔁</div><div class="ach-body"><div class="ach-top"><span class="ach-name">Ripple effect</span><span class="rarity rarity-common">Common</span></div><div class="ach-desc">Your reusable asset was adopted by 5 or more Orians. You built it once — it kept working.</div><div class="ach-unlock">Unlocked by: documented adoption of an L2 asset by 5+ peers</div><div class="ach-swag">🧢 Elite hat or toque</div></div></div>
+        <div class="ach-card"><div class="ach-icon t2-icon">📢</div><div class="ach-body"><div class="ach-top"><span class="ach-name">The explainer</span><span class="rarity rarity-common">Common</span></div><div class="ach-desc">You shared a demo, async guide, or #ai-in-action post that sparked visible peer engagement and follow-up.</div><div class="ach-unlock">Unlocked by: public share with documented peer engagement</div><div class="ach-swag">🎽 T-shirt</div></div></div>
+        <div class="ach-card"><div class="ach-icon t2-icon">🧱</div><div class="ach-body"><div class="ach-top"><span class="ach-name">Prompt architect</span><span class="rarity rarity-rare">Rare</span></div><div class="ach-desc">You built a prompt library judged by peers as exceptional — thorough, documented, and genuinely used in daily work.</div><div class="ach-unlock">Unlocked by: peer-validated prompt library meeting L2 standard</div><div class="ach-swag">🧢 Elite hat or toque</div></div></div>
+        <div class="ach-card"><div class="ach-icon t2-icon">🌐</div><div class="ach-body"><div class="ach-top"><span class="ach-name">Cross-functional</span><span class="rarity rarity-rare">Rare</span></div><div class="ach-desc">Your L2 asset was adopted by Orians outside your own team or function. You built for the org, not just your pod.</div><div class="ach-unlock">Unlocked by: adoption documented across two or more different teams or functions</div><div class="ach-swag">🧢 Elite hat or toque</div></div></div>
+        <div class="ach-card"><div class="ach-icon t2-icon">🎯</div><div class="ach-body"><div class="ach-top"><span class="ach-name">Polyglot</span><span class="rarity rarity-rare">Rare</span></div><div class="ach-desc">You've used AI meaningfully across 3+ different use case categories — writing, code, data, research, design, and beyond.</div><div class="ach-unlock">Unlocked by: documented AI use across 3+ distinct categories across any submissions</div><div class="ach-swag">🧢 Elite hat or toque</div></div></div>
+        <div class="secret-divider">Secret achievements</div>
+        <div class="secret-teaser">These are real — we're just not telling you how to unlock them. You'll know when you've earned one.</div>
+        <div class="ach-card locked"><div class="ach-icon locked-icon">🔒</div><div class="ach-body"><div class="ach-top"><span class="ach-name">??? Secret achievement</span><span class="rarity rarity-legendary">Legendary</span></div><div class="ach-desc">The best tools are the ones you build yourself.</div><div class="secret-hint">Hint: Nobody asked for it — you just saw the gap and filled it.</div><div class="ach-swag">🎁 One-of-a-kind swag — details unknown</div></div></div>
+        <div class="ach-card locked"><div class="ach-icon locked-icon">🔒</div><div class="ach-body"><div class="ach-top"><span class="ach-name">??? Secret achievement</span><span class="rarity rarity-legendary">Legendary</span></div><div class="ach-desc">Your peers noticed before anyone else did.</div><div class="secret-hint">Hint: Recognition doesn't always come from the top.</div><div class="ach-swag">🎁 One-of-a-kind swag — details unknown</div></div></div>
+      </div>
+    </div>
+
+    <!-- L3 -->
+    <div class="tier" id="tier-2">
+      <div class="pill t3-pill"><span class="pip t3-pip"></span>AI Pioneer</div>
+      <div class="tier-meta">Theme: Shaping our future <span>·</span> Focus: Transformational, sustained, or breakthrough impact</div>
+      <div class="quote">"I delivered work that materially changed how Orium or our clients operate."</div>
+      <div class="view-toggle">
+        <button class="view-btn active" onclick="switchView(2,'level',this)">Level details</button>
+        <button class="view-btn" onclick="switchView(2,'examples',this)">Examples</button>
+        <button class="view-btn" onclick="switchView(2,'bonus',this)">Bonus wins</button>
+      </div>
+
+      <div class="view visible" id="v2-level">
+        <div class="sec-label">Choose your path</div>
+        <div class="path-toggle">
+          <button class="path-btn active" onclick="switchPath('a',this)">Path A — Breakthrough</button>
+          <button class="path-btn" onclick="switchPath('b',this)">Path B — Sustained</button>
+        </div>
+        <div id="path-a" class="path-content visible t3">
+          <div class="check-item"><div class="check-box"><svg viewBox="0 0 10 7" fill="none"><path d="M1 3.5L3.8 6 9 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>New or significantly improved capability</span></div>
+          <div class="check-item"><div class="check-box"><svg viewBox="0 0 10 7" fill="none"><path d="M1 3.5L3.8 6 9 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>AI-driven workflow adopted across team(s)</span></div>
+          <div class="check-item"><div class="check-box"><svg viewBox="0 0 10 7" fill="none"><path d="M1 3.5L3.8 6 9 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>Clear, measurable business impact with evidence</span></div>
+        </div>
+        <div id="path-b" class="path-content t3">
+          <div class="check-item"><div class="check-box"><svg viewBox="0 0 10 7" fill="none"><path d="M1 3.5L3.8 6 9 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>Multiple reusable assets adopted by others</span></div>
+          <div class="check-item"><div class="check-box"><svg viewBox="0 0 10 7" fill="none"><path d="M1 3.5L3.8 6 9 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>Sustained AI enablement within the team or practice</span></div>
+          <div class="check-item"><div class="check-box"><svg viewBox="0 0 10 7" fill="none"><path d="M1 3.5L3.8 6 9 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>Demonstrable shift in how people work</span></div>
+        </div>
+        <div class="sec-label">How to nominate</div>
+        <div class="nom-box">
+          <div class="nom-item"><span class="diamond">◆</span><span>Nomination only — peer, manager, or LT</span></div>
+          <div class="nom-item"><span class="diamond">◆</span><span>Documented breakthrough or sustained transformational impact required</span></div>
+          <div class="nom-item"><span class="diamond">◆</span><span>Reviewed and approved by Functional LT member + Jason (who sets bonus amount)</span></div>
+        </div>
+        <div class="sec-label">Recognition</div>
+        <div class="recog-grid" style="grid-template-columns:1fr 1fr 1fr 1fr">
+          <div class="recog-cell"><div class="recog-cell-label">Bonus</div><div class="recog-cell-val">$500–$1,000 depending on impact*</div></div>
+          <div class="recog-cell"><div class="recog-cell-label">Swag</div><div class="recog-cell-val">Premium sweater</div></div>
+          <div class="recog-cell"><div class="recog-cell-label">Eligibility</div><div class="recog-cell-val">Orium AI Builders Weekend</div></div>
+          <div class="recog-cell"><div class="recog-cell-label">External</div><div class="recog-cell-val">Featured case study + LinkedIn certificate</div></div>
+        </div>
+        <div class="badge-bar"><strong>Certificate:</strong> Orium AI Pioneer — Shaping the Future of Human + AI Work</div>
+      <div style="font-size:12px;color:#9A9790;margin-top:10px;line-height:1.6;">* Depending on documented impact, LT and Jason may approve a higher amount.</div>
+      </div>
+
+      <div class="view" id="v2-examples">
+        <div class="sec-label">What L3 looks like across Orium</div>
+        <div class="example-card">
+          <div class="example-role">Technology — Path A: Breakthrough</div>
+          <div class="example-text">Designed and implemented a Claude-based agent and skills framework — a first-of-its-kind shared work product at Orium — that fundamentally changed how the tech team thinks about AI-assisted development. Adopted across multiple teams within weeks of launch.</div>
+          <div class="example-impact">Impact: New capability established, ongoing adoption across engineering practices</div>
+        </div>
+        <div class="example-card">
+          <div class="example-role">Product Management — Path A: Breakthrough</div>
+          <div class="example-text">Led a client engagement integrating agent-based solutions into their product delivery model — from identifying business opportunities to defining orchestration models. Client adopted Orium-level AI practices into their own delivery cadence.</div>
+          <div class="example-impact">Impact: Client operating model materially changed; Orium positioned as AI delivery leader</div>
+        </div>
+        <div class="example-card">
+          <div class="example-role">Design — Path B: Sustained</div>
+          <div class="example-text">Over 6 months, built and evolved the Design+AI agent playbook (Storybook, Cursor, Genie, n8n), trained peers and clients on modern production-focused design methods, and co-owned ongoing refinement. Demonstrable shift in how design integrates with delivery across three projects.</div>
+          <div class="example-impact">Impact: Design+dev collaboration fundamentally changed across practice</div>
+        </div>
+        <div class="example-card">
+          <div class="example-role">Delivery Management — Path B: Sustained</div>
+          <div class="example-text">Designed AI-augmented delivery workflows across backlog, risk, and status alignment. Mentored the MEX delivery team on AI-first documentation practices. Published internal case studies adopted as standard practice by the delivery org.</div>
+          <div class="example-impact">Impact: Sustained enablement shift across MEX delivery team</div>
+        </div>
+        <div class="example-card">
+          <div class="example-role">New Business — Path A: Breakthrough</div>
+          <div class="example-text">Built a fully autonomous AI-assisted outreach and proposal workflow — covering initial contact through handoff — that reduced the full BD cycle time by 40% and was adopted as standard practice across the sales team.</div>
+          <div class="example-impact">Impact: Measurable BD efficiency gain, adopted org-wide</div>
+        </div>
+        <div class="example-card">
+          <div class="example-role">Culture — Path B: Sustained</div>
+          <div class="example-text">Designed and scaled agent-augmented culture systems — AI onboarding guides, auto-recognition workflows, and growth learning agents — that changed how the people team operates. Led strategic conversations on how AI reshapes performance and learning at Orium.</div>
+          <div class="example-impact">Impact: Culture operations fundamentally shifted; Orium-level practices set</div>
+        </div>
+      </div>
+
+      <div class="view" id="v2-bonus">
+        <div class="bonus-intro"><strong>Bonus wins are extras — not requirements.</strong> You earn L3 recognition just by meeting the level criteria. These are additional unlocks that reward specific standout behaviors on top of that.</div>
+        <div class="ach-card"><div class="ach-icon t3-icon">🗺️</div><div class="ach-body"><div class="ach-top"><span class="ach-name">Trailblazer</span><span class="rarity rarity-rare">Rare</span></div><div class="ach-desc">You were first at Orium to pioneer a specific AI use case that others later adopted or built upon.</div><div class="ach-unlock">Unlocked by: LT discretion — first mover on a use case with confirmed follow-on adoption</div><div class="ach-swag">🎽 Premium sweater + LinkedIn spotlight</div></div></div>
+        <div class="ach-card"><div class="ach-icon t3-icon">🏗️</div><div class="ach-body"><div class="ach-top"><span class="ach-name">Systems thinker</span><span class="rarity rarity-rare">Rare</span></div><div class="ach-desc">You connected multiple AI tools or automations into one cohesive, adopted workflow — not a one-off, a system.</div><div class="ach-unlock">Unlocked by: documented multi-step AI workflow adopted at L3 standard</div><div class="ach-swag">🎽 Premium sweater</div></div></div>
+        <div class="ach-card"><div class="ach-icon t3-icon">🤝</div><div class="ach-body"><div class="ach-top"><span class="ach-name">Mentor mode</span><span class="rarity rarity-rare">Rare</span></div><div class="ach-desc">You proactively helped other Orians level up — coaching, pairing, or co-developing AI workflows that wouldn't have existed otherwise.</div><div class="ach-unlock">Unlocked by: peer or manager nomination citing direct and sustained mentorship</div><div class="ach-swag">🎽 Premium sweater</div></div></div>
+        <div class="ach-card"><div class="ach-icon t3-icon">🏢</div><div class="ach-body"><div class="ach-top"><span class="ach-name">Client signal</span><span class="rarity rarity-rare">Rare</span></div><div class="ach-desc">Your AI work had documented, positive client-facing impact. The value didn't stop at the Orium wall.</div><div class="ach-unlock">Unlocked by: L3 submission with verified client-facing outcome</div><div class="ach-swag">🎽 Premium sweater + external case study feature</div></div></div>
+        <div class="ach-card"><div class="ach-icon t3-icon">📈</div><div class="ach-body"><div class="ach-top"><span class="ach-name">Triple threat</span><span class="rarity rarity-legendary">Legendary</span></div><div class="ach-desc">You earned all three recognition levels — Practitioner, Innovator, and Pioneer. The full journey, completed.</div><div class="ach-unlock">Unlocked by: achieving L1 + L2 + L3 recognition</div><div class="ach-swag">🎽 Premium sweater + featured external case study</div></div></div>
+        <div class="secret-divider">Secret achievements</div>
+        <div class="secret-teaser">These are real — we're just not telling you how to unlock them. You'll know when you've earned one.</div>
+        <div class="ach-card locked"><div class="ach-icon locked-icon">🔒</div><div class="ach-body"><div class="ach-top"><span class="ach-name">??? Secret achievement</span><span class="rarity rarity-legendary">Legendary</span></div><div class="ach-desc">Not all impact announces itself.</div><div class="secret-hint">Hint: The quietest contributions sometimes travel the furthest.</div><div class="ach-swag">🎁 One-of-a-kind swag — details unknown</div></div></div>
+        <div class="ach-card locked"><div class="ach-icon locked-icon">🔒</div><div class="ach-body"><div class="ach-top"><span class="ach-name">??? Secret achievement</span><span class="rarity rarity-legendary">Legendary</span></div><div class="ach-desc">We'll know it when we see it.</div><div class="secret-hint">Hint: This one is entirely at Jason's discretion. Push the envelope.</div><div class="ach-swag">🎁 One-of-a-kind swag — details unknown</div></div></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+let current = 0;
+const tabActiveClass = ['t1-active','t2-active','t3-active'];
+
+function goTo(i) {
+  document.getElementById('tier-'+current).classList.remove('visible');
+  document.getElementById('ltab-'+current).classList.remove(tabActiveClass[current]);
+  current = i;
+  document.getElementById('tier-'+current).classList.add('visible');
+  document.getElementById('ltab-'+current).classList.add(tabActiveClass[current]);
+  document.getElementById('main-card').className = 'card ' + ['t1','t2','t3'][current];
+}
+
+function switchView(tier, name, btn) {
+  btn.closest('.view-toggle').querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  ['level','examples','bonus'].forEach(v => {
+    const el = document.getElementById('v'+tier+'-'+v);
+    if (el) el.classList.toggle('visible', v === name);
+  });
+}
+
+function switchPath(path, btn) {
+  document.querySelectorAll('.path-content').forEach(p => p.classList.remove('visible'));
+  document.querySelectorAll('.path-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('path-'+path).classList.add('visible');
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>
