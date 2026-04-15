@@ -33,15 +33,15 @@
   .tier { display: none; }
   .tier.visible { display: block; }
 
-  .pill { display: inline-flex; align-items: center; gap: 8px; padding: 7px 16px 7px 12px; border-radius: 99px; font-size: 13px; font-weight: 600; margin-bottom: 1.25rem; }
+  .pill { display: inline-flex; align-items: center; flex-wrap: wrap; gap: 4px; padding: 7px 16px 7px 12px; border-radius: 20px; font-size: 13px; font-weight: 600; margin-bottom: 1.25rem; }
   .pip { width: 8px; height: 8px; border-radius: 50%; }
   .t1-pill { background: #D4EDE4; color: #0A5A42; } .t1-pip { background: #1D9E75; }
   .t2-pill { background: #E6F1FB; color: #0C447C; } .t2-pip { background: #185FA5; }
   .t3-pill { background: #EDEAE4; color: #2A2925; } .t3-pip { background: #2A2925; }
 
-  .tier-meta { font-size: 13px; color: #7A7870; margin-bottom: 10px; }
+  .tier-meta { font-size: 13px; color: #7A7870; margin-bottom: 10px; font-style: italic; }
   .tier-meta span { margin: 0 6px; color: #C0BDB5; }
-  .quote { font-size: 16px; font-style: italic; color: #2A2925; line-height: 1.55; padding-left: 16px; margin-bottom: 1.5rem; }
+  .quote { font-size: 14px; font-style: italic; color: #7A7870; line-height: 1.55; padding-left: 16px; margin-bottom: 1.5rem; }
   .t1 .quote { border-left: 3px solid #1D9E75; }
   .t2 .quote { border-left: 3px solid #185FA5; }
   .t3 .quote { border-left: 3px solid #2A2925; }
@@ -151,8 +151,7 @@
 
     <!-- L1 -->
     <div class="tier visible" id="tier-0">
-      <div class="pill t1-pill"><span class="pip t1-pip"></span>AI Practitioner</div>
-      <div class="tier-meta">Theme: Making it real <span>·</span> Focus: Measurable improvement in your own work</div>
+      <div class="pill t1-pill"><span class="pip t1-pip"></span>AI Practitioner</div><div style="font-size:13px;color:#2A2925;margin-bottom:1.25rem;margin-top:-8px;padding-left:2px;">Making it real: measurable improvement in your own work</div>
       <div class="quote">"I used AI to meaningfully improve a real workflow, and I can clearly show the before and after."</div>
       <div class="view-toggle">
         <button class="view-btn active" onclick="switchView(0,'level',this)">Level details</button>
@@ -237,8 +236,7 @@
 
     <!-- L2 -->
     <div class="tier" id="tier-1">
-      <div class="pill t2-pill"><span class="pip t2-pip"></span>AI Innovator</div>
-      <div class="tier-meta">Theme: Scaling your impact <span>·</span> Focus: Reusable value that enables others</div>
+      <div class="pill t2-pill"><span class="pip t2-pip"></span>AI Innovator</div><div style="font-size:13px;color:#2A2925;margin-bottom:1.25rem;margin-top:-8px;padding-left:2px;">Scaling your impact: reusable value that enables others</div>
       <div class="quote">"I built something reusable that helps other Orians work smarter or faster."</div>
       <div class="view-toggle">
         <button class="view-btn active" onclick="switchView(1,'level',this)">Level details</button>
@@ -326,8 +324,7 @@
 
     <!-- L3 -->
     <div class="tier" id="tier-2">
-      <div class="pill t3-pill"><span class="pip t3-pip"></span>AI Pioneer</div>
-      <div class="tier-meta">Theme: Shaping our future <span>·</span> Focus: Transformational, sustained, or breakthrough impact</div>
+      <div class="pill t3-pill"><span class="pip t3-pip"></span>AI Pioneer</div><div style="font-size:13px;color:#2A2925;margin-bottom:1.25rem;margin-top:-8px;padding-left:2px;">Shaping our future: transformational, sustained, or breakthrough impact</div>
       <div class="quote">"I delivered work that materially changed how Orium or our clients operate."</div>
       <div class="view-toggle">
         <button class="view-btn active" onclick="switchView(2,'level',this)">Level details</button>
