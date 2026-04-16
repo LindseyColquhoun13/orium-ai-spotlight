@@ -67,6 +67,10 @@
   .t3 .check-box svg { color: #2A2925; }
 
   .nom-box { background: #EDEAE4; border-radius: 12px; padding: 1rem 1.25rem; margin-top: 8px; display: flex; flex-direction: column; gap: 8px; }
+  .coach-box { background: #F5F3EE; border-left: 3px solid #C8C4B8; border-radius: 0 10px 10px 0; padding: 0.875rem 1.25rem; margin-top: 1.25rem; display: flex; flex-direction: column; gap: 6px; }
+  .t1 .coach-box { border-left-color: #1D9E75; }
+  .t2 .coach-box { border-left-color: #185FA5; }
+  .t3 .coach-box { border-left-color: #2A2925; }
   .nom-item { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: #2A2925; line-height: 1.5; }
   .diamond { font-size: 9px; color: #9A9790; margin-top: 4px; flex-shrink: 0; }
 
@@ -161,16 +165,15 @@
       </div>
 
       <div class="view visible" id="v0-level">
-        <p style="font-size:14px;color:#5A5850;line-height:1.7;margin-bottom:1rem;">This is where most people start. It's about applying AI in real work, not just experimenting in isolation.</p>
-        <p style="font-size:14px;color:#5A5850;line-height:1.7;margin-bottom:1rem;">This doesn't need to be massive. We care about real, practical improvements that make your work better.</p>
+        <p style="font-size:14px;color:#5A5850;line-height:1.7;margin-bottom:1rem;">This is where most people start. It's about applying AI in real work, not just experimenting in isolation. It doesn't need to be massive — we care about practical improvements that genuinely make your work better.</p>
         <p style="font-size:14px;color:#5A5850;line-height:1.7;margin-bottom:1rem;">What "meaningful improvement" looks like will vary by role. For some, it's a full workflow. For others, it's eliminating a repetitive task or improving the quality of something you do every day.</p>
         <p style="font-size:14px;color:#2A2925;font-weight:500;line-height:1.7;margin-bottom:1rem;">If you've been experimenting with AI at all, there's a good chance you're closer to one of these than you think.</p>
                 <div class="sec-label">What to submit</div>
         <div class="check-list">
-          <div class="check-item"><div class="check-box"><svg viewBox="0 0 10 7" fill="none"><path d="M1 3.5L3.8 6 9 1" stroke="currentColour" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>Short write-up or video (3–5 min async)</span></div>
-          <div class="check-item"><div class="check-box"><svg viewBox="0 0 10 7" fill="none"><path d="M1 3.5L3.8 6 9 1" stroke="currentColour" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>The problem you faced</span></div>
-          <div class="check-item"><div class="check-box"><svg viewBox="0 0 10 7" fill="none"><path d="M1 3.5L3.8 6 9 1" stroke="currentColour" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>Your AI approach</span></div>
-          <div class="check-item"><div class="check-box"><svg viewBox="0 0 10 7" fill="none"><path d="M1 3.5L3.8 6 9 1" stroke="currentColour" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>You can clearly show the impact (time saved, quality improved, speed, clarity, whatever makes sense in your context)</span></div>
+          <div class="check-item"><div class="check-box"><svg viewBox="0 0 10 7" fill="none"><path d="M1 3.5L3.8 6 9 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>Short write-up or video (3–5 min async)</span></div>
+          <div class="check-item"><div class="check-box"><svg viewBox="0 0 10 7" fill="none"><path d="M1 3.5L3.8 6 9 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>The problem you faced</span></div>
+          <div class="check-item"><div class="check-box"><svg viewBox="0 0 10 7" fill="none"><path d="M1 3.5L3.8 6 9 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>Your AI approach</span></div>
+          <div class="check-item"><div class="check-box"><svg viewBox="0 0 10 7" fill="none"><path d="M1 3.5L3.8 6 9 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>You can clearly show the impact (time saved, quality improved, speed, clarity, whatever makes sense in your context)</span></div>
         </div>
         <div class="sec-label">How to nominate</div>
         <div class="nom-box">
@@ -191,9 +194,11 @@
             <div class="example-impact">See the Examples tab for more across every function.</div>
           </div>
         </div>
-        <p style="font-size:13px;color:#5A5850;font-style:italic;line-height:1.7;margin-top:1.25rem;margin-bottom:0.5rem;">A good L1 feels like: "I wouldn't go back to how I was doing this before."</p>
-        <p style="font-size:13px;color:#5A5850;line-height:1.7;margin-bottom:0.5rem;">This is also a way to build your own capability and visibility as AI becomes a bigger part of how we work.</p>
-        <p style="font-size:13px;color:#7A7870;line-height:1.7;margin-bottom:1rem;font-style:italic;">This is often where people start before moving into building for others.</p>
+        <div class="coach-box">
+          <p style="font-size:12px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#9A9790;margin:0;">💡 What this usually feels like</p>
+          <p style="font-size:13px;color:#5A5850;font-style:italic;line-height:1.7;margin:0;">"I wouldn't go back to how I was doing this before."</p>
+          <p style="font-size:13px;color:#7A7870;line-height:1.7;margin:0;">This is often where people start. It's also how you begin building your own capability and visibility as AI becomes a bigger part of how we work.</p>
+        </div>
         <div class="badge-bar"><strong>Badge:</strong> Orium AI Practitioner — Making AI Work for You</div>
       </div>
 
@@ -267,9 +272,9 @@
         <div class="sec-label">What to create</div>
         <p style="font-size:13px;color:#7A7870;line-height:1.7;margin-bottom:0.75rem;">Most L2s start as something you built for yourself that others started asking for.</p>
         <div class="check-list t2">
-          <div class="check-item"><div class="check-box"><svg viewBox="0 0 10 7" fill="none"><path d="M1 3.5L3.8 6 9 1" stroke="currentColour" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>A reusable asset: prompt library, workflow, automation, or mini-guide</span></div>
-          <div class="check-item"><div class="check-box"><svg viewBox="0 0 10 7" fill="none"><path d="M1 3.5L3.8 6 9 1" stroke="currentColour" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>Demonstrated measurable adoption or impact beyond yourself</span></div>
-          <div class="check-item"><div class="check-box"><svg viewBox="0 0 10 7" fill="none"><path d="M1 3.5L3.8 6 9 1" stroke="currentColour" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>Share publicly: a short demo, async guide, or #ai-in-action post</span></div>
+          <div class="check-item"><div class="check-box"><svg viewBox="0 0 10 7" fill="none"><path d="M1 3.5L3.8 6 9 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>A reusable asset: prompt library, workflow, automation, or mini-guide</span></div>
+          <div class="check-item"><div class="check-box"><svg viewBox="0 0 10 7" fill="none"><path d="M1 3.5L3.8 6 9 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>Demonstrated measurable adoption or impact beyond yourself</span></div>
+          <div class="check-item"><div class="check-box"><svg viewBox="0 0 10 7" fill="none"><path d="M1 3.5L3.8 6 9 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>Share publicly: a short demo, async guide, or #ai-in-action post</span></div>
         </div>
         <div class="sec-label">How to nominate</div>
         <div class="nom-box">
@@ -293,8 +298,11 @@
             <div class="example-impact">See the Examples tab for more across every function.</div>
           </div>
         </div>
-        <p style="font-size:13px;color:#5A5850;font-style:italic;line-height:1.7;margin-top:1.25rem;margin-bottom:0.5rem;">A good L2 feels like: "Other people are now using this without me having to push it."</p>
-        <p style="font-size:13px;color:#7A7870;line-height:1.7;margin-bottom:1rem;font-style:italic;">This is where impact starts to scale across the team.</p>
+        <div class="coach-box">
+          <p style="font-size:12px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#9A9790;margin:0;">💡 What this usually feels like</p>
+          <p style="font-size:13px;color:#5A5850;font-style:italic;line-height:1.7;margin:0;">"Other people are now using this without me having to push it."</p>
+          <p style="font-size:13px;color:#7A7870;line-height:1.7;margin:0;">This is where impact starts to scale across the team.</p>
+        </div>
         <div class="badge-bar"><strong>Badge:</strong> Orium AI Innovator — Teaching Others &amp; Sharing What Works</div>
       <div style="font-size:12px;color:#9A9790;margin-top:10px;line-height:1.6;">* Depending on documented impact, LT may approve a higher amount.</div>
       </div>
@@ -372,14 +380,14 @@
           <button class="path-btn" onclick="switchPath('b',this)">Path B: Sustained</button>
         </div>
         <div id="path-a" class="path-content visible t3">
-          <div class="check-item"><div class="check-box"><svg viewBox="0 0 10 7" fill="none"><path d="M1 3.5L3.8 6 9 1" stroke="currentColour" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>New or significantly improved capability</span></div>
-          <div class="check-item"><div class="check-box"><svg viewBox="0 0 10 7" fill="none"><path d="M1 3.5L3.8 6 9 1" stroke="currentColour" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>AI-driven workflow adopted across team(s)</span></div>
-          <div class="check-item"><div class="check-box"><svg viewBox="0 0 10 7" fill="none"><path d="M1 3.5L3.8 6 9 1" stroke="currentColour" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>Clear, measurable business impact you can point to</span></div>
+          <div class="check-item"><div class="check-box"><svg viewBox="0 0 10 7" fill="none"><path d="M1 3.5L3.8 6 9 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>New or significantly improved capability</span></div>
+          <div class="check-item"><div class="check-box"><svg viewBox="0 0 10 7" fill="none"><path d="M1 3.5L3.8 6 9 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>AI-driven workflow adopted across team(s)</span></div>
+          <div class="check-item"><div class="check-box"><svg viewBox="0 0 10 7" fill="none"><path d="M1 3.5L3.8 6 9 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>Clear, measurable business impact you can point to</span></div>
         </div>
         <div id="path-b" class="path-content t3">
-          <div class="check-item"><div class="check-box"><svg viewBox="0 0 10 7" fill="none"><path d="M1 3.5L3.8 6 9 1" stroke="currentColour" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>Multiple reusable assets adopted by others</span></div>
-          <div class="check-item"><div class="check-box"><svg viewBox="0 0 10 7" fill="none"><path d="M1 3.5L3.8 6 9 1" stroke="currentColour" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>Sustained AI enablement within the team or practice</span></div>
-          <div class="check-item"><div class="check-box"><svg viewBox="0 0 10 7" fill="none"><path d="M1 3.5L3.8 6 9 1" stroke="currentColour" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>Demonstrable shift in how people work</span></div>
+          <div class="check-item"><div class="check-box"><svg viewBox="0 0 10 7" fill="none"><path d="M1 3.5L3.8 6 9 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>Multiple reusable assets adopted by others</span></div>
+          <div class="check-item"><div class="check-box"><svg viewBox="0 0 10 7" fill="none"><path d="M1 3.5L3.8 6 9 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>Sustained AI enablement within the team or practice</span></div>
+          <div class="check-item"><div class="check-box"><svg viewBox="0 0 10 7" fill="none"><path d="M1 3.5L3.8 6 9 1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>Demonstrable shift in how people work</span></div>
         </div>
         <div class="sec-label">How to nominate</div>
         <div class="nom-box">
@@ -402,8 +410,11 @@
             <div class="example-impact">See the Examples tab for more across every function.</div>
           </div>
         </div>
-        <p style="font-size:13px;color:#5A5850;font-style:italic;line-height:1.7;margin-top:1.25rem;margin-bottom:0.5rem;">A good L3 feels like: "This changed how a team or client actually operates."</p>
-        <p style="font-size:13px;color:#7A7870;line-height:1.7;margin-bottom:1rem;font-style:italic;">This is where we start to redefine how we work.</p>
+        <div class="coach-box">
+          <p style="font-size:12px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:#9A9790;margin:0;">💡 What this usually feels like</p>
+          <p style="font-size:13px;color:#5A5850;font-style:italic;line-height:1.7;margin:0;">"This changed how a team or client actually operates."</p>
+          <p style="font-size:13px;color:#7A7870;line-height:1.7;margin:0;">This is where we start to redefine how we work.</p>
+        </div>
         <div class="badge-bar"><strong>Certificate:</strong> Orium AI Pioneer — Shaping the Future of Human + AI Work</div>
       <div style="font-size:12px;color:#9A9790;margin-top:10px;line-height:1.6;">* Depending on documented impact, LT and Jason may approve a higher amount.</div>
       </div>
